@@ -1,4 +1,5 @@
 
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -10,6 +11,9 @@ public class Main {
 
 
     public static void main(String[] args) {
+        int x = 5;
+        x &= 3;
+        System.out.println(x);
 
         show_help();
         add_to_list();
@@ -17,7 +21,8 @@ public class Main {
 
     //> Method for display help
     public static void show_help(){
-        System.out.println("================= 🛍 =================\n" +
+        System.out.println(
+                "================= 🛍 =================\n" +
                 "# Welcome to Shopping List App.        \n\n" +
                 "> Enter 'DONE' to exit the app.        |\n" +
                 "> Enter 'SHOW' to see your items.      | \n" +
@@ -66,10 +71,12 @@ public class Main {
 
         while (true){
             Scanner delete = new Scanner(System.in);
-            System.out.println("Enter item to delete");
+            System.out.println("Enter 'DONE' to exit Deletion.");
+            System.out.print("Enter item to delete >> ");
             String del_item = delete.nextLine();
-            if (del_item.toUpperCase().contains("done")){
+            if (del_item.contains("done")){
                show_help();
+               break;
             }
             shoppingList.remove(del_item);
         }
@@ -87,6 +94,7 @@ public class Main {
 
             switch (add_item.toUpperCase()){
                 case "DONE":
+                    System.out.println("Thanks for using !");
                     System.exit(0);
                     break;
                 case "SHOW":
@@ -104,6 +112,14 @@ public class Main {
                 default:
                     if (shoppingList.contains(add_item)){
                         System.out.println(add_item + " already in your list");
+                    }
+                    else if (add_item.contains(",")){
+                      // Split the incoming value with coma 
+                      String [] split_item = add_item.split(",");
+                      // Loop the splitted value and added to the list.
+                      for (int i=0; i < split_item.length; i++){
+                       shoppingList.add(split_item[i]);
+                      }
                     }
                     else{
                         shoppingList.add(add_item);

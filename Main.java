@@ -8,6 +8,7 @@ public class Main {
 
     // Containers for storing list items
     static ArrayList<String> shoppingList = new ArrayList<String>();
+    static ArrayList<String> fruitList = new ArrayList<String>();
 
 
     public static void main(String[] args) {
@@ -22,14 +23,17 @@ public class Main {
     //> Method for display help
     public static void show_help(){
         System.out.println(
-                "================= 🛍 =================\n" +
+                "==================== 🛍 ==================\n" +
                 "# Welcome to Shopping List App.        \n\n" +
-                "> Enter 'DONE' to exit the app.        |\n" +
-                "> Enter 'SHOW' to see your items.      | \n" +
-                "> Enter 'HELP' to see help.            |\n" +
-                "> Enter 'DEL' to delete list item.     |\n" +
-                "> Enter 'CLEAR' to remove your list.   |\n" +
-                "================= 🛒 ==================");
+                "==================== 🛒 ===================\n" +
+                "> Enter 'DONE' to exit the app.           |\n" +
+                "> Enter 'SHOW' to see your items.         | \n" +
+                "> Enter 'CAT' to add category items       | \n" +
+                "> Enter 'HELP' to see help.               |\n" +
+                "> Enter 'DEL' to delete list item.        |\n" +
+                "> Enter 'CLEAR' to remove your list.      |\n" +
+                "> Add Multiple item by comma seperation   |\n" +
+                "==================== 🛒 ===================");
     }
 
 
@@ -41,12 +45,48 @@ public class Main {
             System.out.println((shoppingList.indexOf(item) + 1) + ". " + item.toUpperCase());
         }
         if (shoppingList.size() <= 1) {
-            System.out.println("You have " + shoppingList.size() + " item in your list");
+            System.out.println("You have " + shoppingList.size() + " item in your regular list");
         }
         else {
-            System.out.println("You have "+ shoppingList.size() + " items in your list");
+            System.out.println("You have "+ shoppingList.size() + " items in your regular list");
+        }
+            System.out.println("Your Fruits list");
+            System.out.println("-----------------");
+            for (String item: fruitList){
+            System.out.println((fruitList.indexOf(item) + 1) + ". " + item.toUpperCase());
         }
 
+    }
+
+
+    //> List items in certain Categories
+    public static void categories(){
+      System.out.println("FRUITS, VEGETABLE, GROCERY");
+      System.out.println("Enter \"DONE\" to finish adding");
+      System.out.println("Enter \"SHOW\" to see list");
+      Scanner category = new Scanner(System.in);
+      System.out.print("Enter Category name >> ");
+      String cats = category.next();
+
+      if (cats.toUpperCase().contains("FRUITS")){
+        while (true){
+          Scanner fruits = new Scanner(System.in);
+          System.out.print("Add fruits >> ");
+          String addFruit = fruits.next();
+          if (addFruit.toUpperCase().contains("DONE")){
+              System.out.println("Fruits added to your list");
+              add_to_list();
+          }
+          else if ( addFruit.toUpperCase().contains("SHOW")){
+            show_list();
+          }
+          else{
+            fruitList.add(addFruit);
+          }
+
+        }
+
+      }
     }
 
 
@@ -68,10 +108,10 @@ public class Main {
 
     //> Method to delete list items
     public  static void delete_item(){
-
+        System.out.println("Enter 'DONE' to exit Deletion.");
         while (true){
             Scanner delete = new Scanner(System.in);
-            System.out.println("Enter 'DONE' to exit Deletion.");
+            
             System.out.print("Enter item to delete >> ");
             String del_item = delete.nextLine();
             if (del_item.contains("done")){
@@ -94,11 +134,15 @@ public class Main {
 
             switch (add_item.toUpperCase()){
                 case "DONE":
-                    System.out.println("Thanks for using !");
+                    System.out.println("\nThanks for using !\n~~~~~~~~**~~~~~~~~\nDeveloped By- \nMuhammad Khan\nHadoop Developer.");
+                    System.out.println("~~~~~~~~**~~~~~~~~");
                     System.exit(0);
                     break;
                 case "SHOW":
                     show_list();
+                    break;
+                case "CAT":
+                    categories();
                     break;
                 case "CLEAR":
                     remove_list();

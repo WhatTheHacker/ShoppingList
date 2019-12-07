@@ -57,10 +57,10 @@ public class Main {
 
         }
           if (shoppingList.size() <= 1) {
-            System.out.println("You have " + shoppingList.size() + " item in your fruits list");
+            System.out.println("You have " + fruitList.size() + " item in your fruits list");
         }
         else {
-            System.out.println("You have "+ shoppingList.size() + " items in your fruits list");
+            System.out.println("You have "+ fruitList.size() + " items in your fruits list");
         }
 
     }
@@ -126,7 +126,13 @@ public class Main {
                show_help();
                break;
             }
+            else if (!shoppingList.contains(del_item)){
+              System.out.println(del_item + " not in list! Try again !!");
+            }
+            else{
             shoppingList.remove(del_item);
+            System.out.println(del_item + " deleted");
+            }
         }
 
     }
@@ -170,7 +176,7 @@ public class Main {
                       String [] split_item = add_item.split(",");
                       // Loop the splitted value and added to the list.
                       for (int i=0; i < split_item.length; i++){
-                       shoppingList.add(split_item[i]);
+                       shoppingList.add(split_item[i].trim()); // trim() used to eliminate spaces
                       }
                     }
                     else{

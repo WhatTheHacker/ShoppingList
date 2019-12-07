@@ -1,5 +1,4 @@
 
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -12,27 +11,32 @@ public class Main {
 
 
     public static void main(String[] args) {
-        int x = 5;
-        x &= 3;
-        System.out.println(x);
 
+        // displaying the help option at first
         show_help();
+        // Calling the add_to_list method 
         add_to_list();
     }
+
+    public static void clearScreen() {  
+      System.out.print("\033[H\033[2J");  
+      System.out.flush();  
+} 
 
     //> Method for display help
     public static void show_help(){
         System.out.println(
                 "==================== 🛍 ==================\n" +
                 "# Welcome to Shopping List App.        \n\n" +
-                "====================🛒 ===================\n" +
-                "> Enter 'DONE' to exit the app.           |\n" +
-                "> Enter 'SHOW' to see your items.         | \n" +
-                "> Enter 'CAT' to add category items       | \n" +
-                "> Enter 'HELP' to see help.               |\n" +
-                "> Enter 'DEL' to delete list item.        |\n" +
-                "> Enter 'CLEAR' to remove your list.      |\n" +
-                "> Add Multiple item by comma seperation   |\n" +
+                "==================== 🛒 ===================\n" +
+                "#> Enter 'DONE' to exit the app.           |\n" +
+                "#> Enter 'SHOW' to see your items.         | \n" +
+                "#> Enter 'CAT' to add category items       | \n" +
+                "#> Enter 'HELP' to see help.               |\n" +
+                "#> Enter 'DEL' to delete list item.        |\n" +
+                "#> Enter 'REMOVE' to remove your list.     |\n" +
+                "#> Enter 'CLS' to clear screen.        |\n" +
+                "#> Add Multiple item by comma seperation   |\n" +
                 "==================== 🛒  ===================");
     }
 
@@ -41,21 +45,25 @@ public class Main {
     public  static void show_list(){
         System.out.println("Here is your Regular shopping list");
         System.out.println("-----------------------------------");
+        // Looping the shoppingList array to display list items
         for (String item: shoppingList){
             System.out.println((shoppingList.indexOf(item) + 1) + ". " + item.toUpperCase());
         }
+        // Checking number of  list array items and give message about items
         if (shoppingList.size() <= 1) {
             System.out.println("You have " + shoppingList.size() + " item in your regular list");
         }
         else {
             System.out.println("You have "+ shoppingList.size() + " items in your regular list");
-        }
+        }   
+            // Displaying fruit items
             System.out.println("Your Fruits list");
             System.out.println("-----------------");
             for (String item: fruitList){
             System.out.println((fruitList.indexOf(item) + 1) + ". " + item.toUpperCase());
 
         }
+          // // Checking number list array items and give message about items
           if (shoppingList.size() <= 1) {
             System.out.println("You have " + fruitList.size() + " item in your fruits list");
         }
@@ -72,10 +80,11 @@ public class Main {
       System.out.println("Enter \"DONE\" to finish adding");
       System.out.println("Enter \"SHOW\" to see list");
       
+      // Creating Scanner object to take user input to create category
       Scanner category = new Scanner(System.in);
       System.out.print("Enter Category name >> ");
       String cats = category.next();
-
+      // Matching user input with category names
       if (cats.toUpperCase().contains("FRUITS")){
         while (true){
           Scanner fruits = new Scanner(System.in);
@@ -148,7 +157,9 @@ public class Main {
 
             switch (add_item.toUpperCase()){
                 case "DONE":
-                    System.out.println("\nThanks for using !\n~~~~~~~~**~~~~~~~~\nDeveloped By- \nMuhammad Khan\nHadoop Developer.");
+                    System.out.println("\nThanks for using !" + 
+                    " \n~~~~~~~~**~~~~~~~~\nDeveloped By - " +
+                    " \nMuhammad Khan\nHadoop Developer.");
                     System.out.println("~~~~~~~~**~~~~~~~~");
                     System.exit(0);
                     break;
@@ -158,14 +169,17 @@ public class Main {
                 case "CAT":
                     categories();
                     break;
-                case "CLEAR":
+                case "REMOVE":
                     remove_list();
+                    break;
+                case "CLS":
+                    clearScreen();
                     break;
                 case "DEL":
                     delete_item();
                     break;
                 case "HELP":
-                    show_help();
+                    show_help();           
                     break;
                 default:
                     if (shoppingList.contains(add_item)){

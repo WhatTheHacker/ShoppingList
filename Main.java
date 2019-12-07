@@ -25,7 +25,7 @@ public class Main {
         System.out.println(
                 "==================== 🛍 ==================\n" +
                 "# Welcome to Shopping List App.        \n\n" +
-                "==================== 🛒 ===================\n" +
+                "====================🛒 ===================\n" +
                 "> Enter 'DONE' to exit the app.           |\n" +
                 "> Enter 'SHOW' to see your items.         | \n" +
                 "> Enter 'CAT' to add category items       | \n" +
@@ -33,7 +33,7 @@ public class Main {
                 "> Enter 'DEL' to delete list item.        |\n" +
                 "> Enter 'CLEAR' to remove your list.      |\n" +
                 "> Add Multiple item by comma seperation   |\n" +
-                "==================== 🛒 ===================");
+                "==================== 🛒  ===================");
     }
 
 
@@ -54,6 +54,13 @@ public class Main {
             System.out.println("-----------------");
             for (String item: fruitList){
             System.out.println((fruitList.indexOf(item) + 1) + ". " + item.toUpperCase());
+
+        }
+          if (shoppingList.size() <= 1) {
+            System.out.println("You have " + shoppingList.size() + " item in your fruits list");
+        }
+        else {
+            System.out.println("You have "+ shoppingList.size() + " items in your fruits list");
         }
 
     }
@@ -64,6 +71,7 @@ public class Main {
       System.out.println("FRUITS, VEGETABLE, GROCERY");
       System.out.println("Enter \"DONE\" to finish adding");
       System.out.println("Enter \"SHOW\" to see list");
+      
       Scanner category = new Scanner(System.in);
       System.out.print("Enter Category name >> ");
       String cats = category.next();
@@ -155,7 +163,7 @@ public class Main {
                     break;
                 default:
                     if (shoppingList.contains(add_item)){
-                        System.out.println(add_item + " already in your list");
+                        System.out.println("\"" + add_item.toUpperCase() + "\" already in your list");
                     }
                     else if (add_item.contains(",")){
                       // Split the incoming value with coma 
@@ -167,6 +175,19 @@ public class Main {
                     }
                     else{
                         shoppingList.add(add_item);
+                        System.out.println("'" +add_item.toUpperCase() + "' added to list.");
+                        for(int i = 0; i<= add_item.length(); i++){
+                           System.out.print("=");
+                        }
+                            if (shoppingList.size() <= 1) {
+                                 System.out.println("================");
+                                 System.out.println("You have " + shoppingList.size() + " item.");
+        }
+                            else {
+                                  System.out.println("================");
+                                  System.out.println("You have "+ shoppingList.size() + " items.");
+        }
+          
                     }
 
             }
